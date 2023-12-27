@@ -1,6 +1,7 @@
 #!/usr/bin/python
 #-*- coding: utf-8 -*-
-
+import warnings
+warnings.simplefilter('ignore')
 import time, pdb, argparse, subprocess, pickle, os, gzip, glob
 import shutil
 
@@ -43,7 +44,8 @@ for idx, fname in enumerate(flist):
     offset, conf, dist = s.evaluate(opt,videofile=fname)
     dists.append(dist)
     with open(f'{opt.output}', 'a') as f:
-        f.write(f'{videofile} {offset} {conf}\n')
+        f.write(f'{videofile} {offset} \n')
+    break
 
 shutil.rmtree(os.path.join(opt.avi_dir,opt.reference))
 shutil.rmtree(os.path.join(opt.tmp_dir,opt.reference))
